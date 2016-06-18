@@ -8,7 +8,7 @@ This script writes a list of this session's sponsors' ids to a text file.
 """
 
 def getBillIdList():
-    r = urlopen("https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getMasterList&state=AZ").read().decode('utf-8')
+    r = urlopen("https://api.legiscan.com/?key=API_KEY&op=getMasterList&state=AZ").read().decode('utf-8')
     json_obj = json.loads(r)
     js = json_obj.get('masterlist')
     bill_id_list= []
@@ -41,7 +41,7 @@ def getBill(bill_list):
 
     bill_over_list = []
     for i in bill_list:
-        billUrl = urlopen("https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getBill&id="+str(i)).read().decode('utf-8')
+        billUrl = urlopen("https://api.legiscan.com/?key=API_KEY&op=getBill&id="+str(i)).read().decode('utf-8')
         json_obj = json.loads(billUrl)
         bill_over_list.append(json_obj)
 

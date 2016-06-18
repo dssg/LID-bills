@@ -4,7 +4,7 @@ import base64
 from bs4 import BeautifulSoup
 
 def writeBills():
-    r = urlopen("https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getMasterList&state=AZ").read().decode('utf-8')
+    r = urlopen("https://api.legiscan.com/?key=API_KEY&op=getMasterList&state=AZ").read().decode('utf-8')
     json_obj = json.loads(r)
     js = json_obj.get('masterlist')
     bill_id_list= []
@@ -32,7 +32,7 @@ def writeBills():
             pass
 
         #append the doc_id to the API call and convert results to unicode string
-        searchId = urlopen('https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getBillText&id='+str(doc_id)).read().decode()
+        searchId = urlopen('https://api.legiscan.com/?key=API_KEY&op=getBillText&id='+str(doc_id)).read().decode()
 
         #create json object with API data
         resultsId = json.loads(searchId)
@@ -63,7 +63,7 @@ def getBills(bill_list):
     """use the list of ids to increment api billText"""
     complete_bill_list = []
     for i in bill_list:
-        billUrl = urlopen("https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getBill&id="+str(i)).read().decode()
+        billUrl = urlopen("https://api.legiscan.com/?key=API_KEY&op=getBill&id="+str(i)).read().decode()
         json_obj = json.loads(billUrl)
         complete_bill_list.append(json_obj)
 

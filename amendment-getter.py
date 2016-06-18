@@ -11,7 +11,7 @@ key. If you have questions about the API, refer to the documentation:
 """
 
 def getBillId():
-    r = urlopen("https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getMasterList&state=AZ").read().decode('utf-8')
+    r = urlopen("https://api.legiscan.com/?key=API_KEY&op=getMasterList&state=AZ").read().decode('utf-8')
     json_obj = json.loads(r)
     js = json_obj.get('masterlist')
     bill_id_list= []
@@ -44,7 +44,7 @@ def getBillId():
                 pass
             print(amendment_id)
 
-            searchId = urlopen('https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getAmendment&id='+str(amendment_id)).read().decode()
+            searchId = urlopen('https://api.legiscan.com/?key=API_KEY&op=getAmendment&id='+str(amendment_id)).read().decode()
 
             #create json object with API data
             resultsId = json.loads(searchId)
@@ -80,7 +80,7 @@ def getBills(bill_list):
 
     complete_bill_list = []
     for i in bill_list:
-        billUrl = urlopen("https://api.legiscan.com/?key=2d28553a502d7fed3b68863b2f592f19&op=getBill&id="+str(i)).read().decode()
+        billUrl = urlopen("https://api.legiscan.com/?key=API_KEY&op=getBill&id="+str(i)).read().decode()
         json_obj = json.loads(billUrl)
         complete_bill_list.append(json_obj)
 
